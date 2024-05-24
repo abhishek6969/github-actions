@@ -47,7 +47,7 @@ jobs:
         tf_actions_working_dir: "./Terraform"
 
     - name: Terraform Plan
-      run: terraform plan -out=plan.tfplan ./Terraform
+      run: terraform plan -out=plan.tfplan chdir=./Terraform
 
     - name: Save Plan
       uses: actions/upload-artifact@v2
