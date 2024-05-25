@@ -2,7 +2,7 @@ name: 'Terraform Apply'
 
 on:
   workflow_run:
-    workflows: ["Terraform plan"]
+    workflows: ["Terraform Plan"]
     types:
       - completed
 jobs:
@@ -29,12 +29,12 @@ jobs:
       with:
         tf_actions_version: 0.14.8
         tf_actions_subcommand: 'init'
-        tf_actions_working_dir: "./terraform"
-        
+        tf_actions_working_dir: "./Terraform"
+
     - name: Terraform Apply
       if: github.ref == 'refs/heads/main'
       uses: hashicorp/terraform-github-actions@master
       with:
         tf_actions_version: 0.14.8
         tf_actions_subcommand: 'apply'
-        tf_actions_working_dir: "./terraform"
+        tf_actions_working_dir: "./Terraform"
