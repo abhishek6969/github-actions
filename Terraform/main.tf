@@ -3,8 +3,8 @@ resource "azurerm_resource_group" "terraform-practice" {
   location = "West Europe"
 }
 
-resource "azurerm_windows_virtual_machine" "terraform-practice-vm" {
-  name                = "terraform-practice-vm"
+resource "azurerm_windows_virtual_machine" "terraform-vm" {
+  name                = "terraform-vm"
   resource_group_name = azurerm_resource_group.terraform-practice.name
   location            = azurerm_resource_group.terraform-practice.location
   size                = "Standard_D4s_v3"
