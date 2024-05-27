@@ -5,7 +5,7 @@ on:
     branches:
     - main
     tags:
-    - "destroy**"
+    - "destroy*"
 
 jobs:
   terraform:
