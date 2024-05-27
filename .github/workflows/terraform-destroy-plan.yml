@@ -6,6 +6,8 @@ on:
     - main
     tags:
     - "destroy*"
+  pull_request:
+    
 
 jobs:
   terraform:
