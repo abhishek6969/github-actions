@@ -2,7 +2,7 @@ name: 'Terraform Apply Destroy'
 
 on:
   workflow_run:
-    workflows: ["Terraform Plan Apply"]
+    workflows: ["Terraform Plan Destroy"]
     types:
       - completed
 jobs:
