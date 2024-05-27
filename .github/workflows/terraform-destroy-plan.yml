@@ -2,6 +2,8 @@ name: 'Terraform Plan Destroy'
 
 on:
   push:
+    branches:
+    - main
     tags:
     - "destroy**"
 
