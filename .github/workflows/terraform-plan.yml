@@ -3,7 +3,7 @@ name: 'Terraform Plan'
 on:
   push:
     tags-ignore:
-    - "destroy**"
+    - "destroy*"
   pull_request:
 
 jobs:
