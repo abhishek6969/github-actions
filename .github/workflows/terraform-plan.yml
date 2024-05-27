@@ -2,8 +2,6 @@ name: 'Terraform Plan'
 
 on:
   push:
-    branches:
-    - main
     tags-ignore:
     - "destroy**"
   pull_request:
