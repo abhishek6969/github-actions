@@ -1,0 +1,47 @@
+name: 'Terraform Apply Destroy'
+
+on:
+  workflow_run:
+    workflows: ["Terraform Plan Apply"]
+    types:
+      - completed
+jobs:
+  terraform:
+    name: 'Terraform Apply Destroy'
+    env:
+      ARM_CLIENT_ID: ${{ secrets.AZURE_AD_CLIENT_ID }}
+      ARM_CLIENT_SECRET: ${{ secrets.AZURE_AD_CLIENT_SECRET }}
+      ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_AD_CLIENT_SUBSCRIPTIONID }}
+      ARM_TENANT_ID: ${{ secrets.AZURE_AD_CLIENT_TENANTID }}
+    runs-on: ubuntu-latest
+    environment: dev
+
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: 'Terraform Init'
+      uses: hashicorp/terraform-github-actions@master
+      with:
+        tf_actions_version: 0.14.8
+        tf_actions_subcommand: 'init'
+        tf_actions_working_dir: "./Terraform"
+
+    - name: 'Terraform Validate'
+      uses: hashicorp/terraform-github-actions@master
+      with:
+        tf_actions_version: 0.14.8
+        tf_actions_subcommand: 'validate'
+        tf_actions_working_dir: "./Terraform"
+        
+    - name: 'Terraform Apply Destroy'
+      uses: hashicorp/terraform-github-actions@master
+      with:
+        tf_actions_version: 0.14.8
+        tf_actions_subcommand: 'destroy'
+        tf_actions_working_dir: "./Terraform"
+
