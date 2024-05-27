@@ -4,9 +4,6 @@ on:
   push:
     tags:
     - "destroy**"
-    branches:
-    - main
-  pull_request:
 
 jobs:
   terraform:
