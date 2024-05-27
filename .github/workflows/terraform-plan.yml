@@ -5,7 +5,7 @@ on:
     branches:
     - main
     tags-ignore:
-    - "destroy*"
+    - "destroy**"
   pull_request:
 
 jobs:
