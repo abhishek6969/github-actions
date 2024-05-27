@@ -18,6 +18,7 @@ jobs:
       ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_AD_CLIENT_SUBSCRIPTIONID }}
       ARM_TENANT_ID: ${{ secrets.AZURE_AD_CLIENT_TENANTID }}
     runs-on: ubuntu-latest
+    if: github.ref_type == 'tag' && github.ref == 'refs/tags/destroy*'
     environment: dev
 
     defaults:
