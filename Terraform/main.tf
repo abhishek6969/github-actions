@@ -39,7 +39,7 @@ resource "azurerm_network_interface" "test-nic2" {
   ip_configuration {
     public_ip_address_id          = azurerm_public_ip.test-ip.id
     name                          = "internal2"
-    private_ip_address_allocation = "static"
+    private_ip_address_allocation = "Static"
   }
 }
 
