@@ -37,8 +37,8 @@ resource "azurerm_network_interface" "test-nic2" {
   resource_group_name = azurerm_resource_group.testRG.name
 
   ip_configuration {
-    public_ip_address_id = azurerm_public_ip.test-ip.id
-    name = "internal2"
+    public_ip_address_id          = azurerm_public_ip.test-ip.id
+    name                          = "internal2"
     private_ip_address_allocation = "static"
   }
 }
@@ -58,7 +58,7 @@ resource "azurerm_windows_virtual_machine" "test-vm" {
   admin_username      = "adminuser"
   admin_password      = data.azurerm_key_vault_secret.VM-default-password.value
   network_interface_ids = [
-    azurerm_network_interface.test-nic.id,azurerm_network_interface.test-nic2.id
+    azurerm_network_interface.test-nic.id, azurerm_network_interface.test-nic2.id
   ]
 
   os_disk {
