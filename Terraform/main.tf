@@ -19,18 +19,6 @@ resource "azurerm_subnet" "test-sb" {
   address_prefixes     = ["10.0.2.0/24"]
 }
 
-resource "azurerm_network_interface" "test-nic" {
-  name                = "test-nic"
-  location            = azurerm_resource_group.testRG.location
-  resource_group_name = azurerm_resource_group.testRG.name
-
-  ip_configuration {
-    name                          = "internal"
-    subnet_id                     = azurerm_subnet.test-sb.id
-    private_ip_address_allocation = "Dynamic"
-  }
-}
-
 resource "azurerm_network_interface" "test-nic2" {
   name                = "test-nic2"
   location            = azurerm_resource_group.testRG.location
@@ -39,7 +27,8 @@ resource "azurerm_network_interface" "test-nic2" {
   ip_configuration {
     public_ip_address_id          = azurerm_public_ip.test-ip.id
     name                          = "internal2"
-    private_ip_address_allocation = "Static"
+    private_ip_address_allocation = "Dynamic"
+    subnet_id                     = azurerm_subnet.test-sb.id
   }
 }
 
