@@ -47,7 +47,7 @@ resource "azurerm_windows_virtual_machine" "test-vm" {
   admin_username      = "adminuser"
   admin_password      = data.azurerm_key_vault_secret.VM-default-password.value
   network_interface_ids = [
-    azurerm_network_interface.test-nic.id, azurerm_network_interface.test-nic2.id
+    azurerm_network_interface.test-nic2.id
   ]
 
   os_disk {
