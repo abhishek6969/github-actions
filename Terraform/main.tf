@@ -17,7 +17,6 @@ resource "azurerm_subnet" "test-sb" {
   resource_group_name  = azurerm_resource_group.testRG.name
   virtual_network_name = azurerm_virtual_network.test-vnet.name
   address_prefixes     = ["10.0.2.0/24"]
-  service_endpoints    = ["Microsoft.Storage"]
 }
 
 resource "azurerm_network_interface" "test-nic2" {

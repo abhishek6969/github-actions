@@ -4,10 +4,6 @@ resource "azurerm_storage_account" "testlirookstorage" {
   location                 = azurerm_resource_group.testRG.location
   account_tier             = "Standard"
   account_replication_type = "LRS"
-  network_rules {
-    default_action             = "Deny"
-    virtual_network_subnet_ids = [azurerm_subnet.test-sb.id]
-  }
 }
 
 resource "azurerm_storage_container" "testcontainer" {
