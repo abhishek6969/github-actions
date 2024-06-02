@@ -20,20 +20,20 @@ resource "azurerm_storage_blob" "testblob" {
   source                 = "test.txt"
 }
 
-resource "azurerm_private_endpoint" "pe-test" {
-  name                = "pe-test"
-  location            = azurerm_resource_group.testRG.location
-  resource_group_name = azurerm_resource_group.testRG.name
-  subnet_id           = azurerm_subnet.test-sb.id
+# resource "azurerm_private_endpoint" "pe-test" {
+#   name                = "pe-test"
+#   location            = azurerm_resource_group.testRG.location
+#   resource_group_name = azurerm_resource_group.testRG.name
+#   subnet_id           = azurerm_subnet.test-sb.id
 
-  private_service_connection {
-    name                           = "psc-test"
-    is_manual_connection           = false
-    private_connection_resource_id = azurerm_storage_account.testlirookstorage.id
-    subresource_names              = ["blob"]
-  }
-}
+#   private_service_connection {
+#     name                           = "psc-test"
+#     is_manual_connection           = false
+#     private_connection_resource_id = azurerm_storage_account.testlirookstorage.id
+#     subresource_names              = ["blob"]
+#   }
+# }
 
-output "private_endpoint_ip" {
-  value = azurerm_private_endpoint.pe-test.private_service_connection[0].private_ip_address
-}
+# output "private_endpoint_ip" {
+#   value = azurerm_private_endpoint.pe-test.private_service_connection[0].private_ip_address
+# }
