@@ -1,3 +1,4 @@
 /Terraform/.terraform/*
 /Terraform/.terraform.lock.hcl
 /temp
+*.json
