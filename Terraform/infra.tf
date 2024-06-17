@@ -32,7 +32,7 @@ resource "azurerm_monitor_data_collection_rule" "example" {
       streams                       = ["Microsoft-Perf"]
       sampling_frequency_in_seconds = 60
       counter_specifiers = [
-        "Processor(*)\\% Processor Time",   # % CPU consumed
+        "LogicalDisk(*)\\% Free Space",   # % CPU consumed
       ]
     }
   }
@@ -49,7 +49,7 @@ resource "azurerm_automation_account" "lirookAutomation" {
   name                = "lirookAutomation"
   resource_group_name = azurerm_resource_group.azureInfra.name
   location            = azurerm_resource_group.azureInfra.location
-  sku_name            = "Free"
+  sku_name            = "Basic"
 }
 
 
