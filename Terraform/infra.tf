@@ -49,10 +49,6 @@ resource "azurerm_monitor_data_collection_rule" "example" {
     streams      = ["Microsoft-Perf"]
     destinations = ["example-log-analytics"]
   }
-  data_flow {
-    streams      = ["Microsoft-Perf"]
-    destinations = ["example-metrics"]
-  }
 
   description = "Data collection rule for performance counters"
 }
