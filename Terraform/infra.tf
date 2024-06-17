@@ -37,7 +37,6 @@ resource "azurerm_monitor_data_collection_rule" "example" {
         "\\Processor Information(_Total)\\% Processor Time",
         "\\System\\System Up Time",
         "\\Memory\\% Committed Bytes In Use",
-        "Memory(*)\\% Available Memory",
 
 
 
