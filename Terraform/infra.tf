@@ -32,7 +32,7 @@ resource "azurerm_monitor_data_collection_rule" "example" {
       streams                       = ["Microsoft-Perf"]
       sampling_frequency_in_seconds = 60
       counter_specifiers = [
-        "\\Processor(_Total)\\% Processor Time",   # % CPU consumed
+        "Processor(*)\\% Processor Time",   # % CPU consumed
       ]
     }
   }
