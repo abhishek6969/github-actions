@@ -60,6 +60,7 @@ resource "azurerm_automation_account" "lirookAutomation" {
   sku_name            = "Free"
 }
 
+
 resource "azurerm_log_analytics_linked_service" "example" {
   resource_group_name = azurerm_resource_group.azureInfra.name
   workspace_id = azurerm_log_analytics_workspace.test-law-lirook.id
