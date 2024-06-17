@@ -32,14 +32,22 @@ resource "azurerm_monitor_data_collection_rule" "example" {
       streams                       = ["Microsoft-Perf"]
       sampling_frequency_in_seconds = 60
       counter_specifiers = [
-        "LogicalDisk(*)\\% Free Space",   # % CPU consumed
+        "LogicalDisk(*)\\% Free Space",
+        "Memory(*)\\% Available Memory",
+        "\\Processor Information(_Total)\\% Processor Time",
+        "\\System\\System Up Time",
+        "\\Memory\\% Committed Bytes In Use",
+        "Memory(*)\\% Available Memory",
+
+
+
       ]
     }
   }
 
   data_flow {
     streams      = ["Microsoft-Perf"]
-    destinations = ["example-log-analytics"]
+    destinations = ["example-log-analytics","example-metrics"]
   }
 
   description = "Data collection rule for performance counters"
