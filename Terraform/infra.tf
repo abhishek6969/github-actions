@@ -33,13 +33,6 @@ resource "azurerm_monitor_data_collection_rule" "example" {
       sampling_frequency_in_seconds = 60
       counter_specifiers = [
         "\\Processor(_Total)\\% Processor Time",   # % CPU consumed
-        "\\Memory\\% Committed Bytes In Use",      # % Memory used (Windows)
-        "\\LogicalDisk(_Total)\\% Free Space",     # % Free Space of Disk
-        "\\System\\System Up Time",                # System Uptime
-        "Processor\\% Processor Time",             # % CPU consumed (Linux)
-        "Memory\\% Used Memory",                   # % Memory used (Linux)
-        "Disk\\% Free Space",                      # % Free Space of Disk (Linux)
-        "System\\System Up Time"                   # System Uptime (Linux)
       ]
     }
   }
