@@ -70,4 +70,26 @@ resource "azurerm_log_analytics_linked_service" "example" {
   read_access_id      = azurerm_automation_account.lirookAutomation.id
 }
 
+resource "azurerm_maintenance_configuration" "test-MC" {
+  in_guest_user_patch_mode = "User"
+  location                 = azurerm_resource_group.azureInfra.location
+  name                     = "montly_week2_3amist"
+  resource_group_name      = azurerm_resource_group.azureInfra.name
+  scope                    = "InGuestPatch"
+  install_patches {
+    reboot = "Always"
+    linux {
+      classifications_to_include = ["Critical", "Security", "Other"]
+    }
+    windows {
+      classifications_to_include = ["Critical", "Security", "UpdateRollup", "FeaturePack", "ServicePack", "Definition", "Tools", "Updates"]
+    }
+  }
+  window {
+    duration        = "03:55"
+    recur_every     = "1Month Second Tuesday Offset4"
+    start_date_time = "2024-07-13 03:00"
+    time_zone       = "India Standard Time"
+  }
+}
 
