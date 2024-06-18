@@ -78,7 +78,7 @@ resource "azurerm_maintenance_configuration" "example" {
   install_patches {
     reboot = "Always"
   }
-  in_guest_user_patch_mode = "user"
+  in_guest_user_patch_mode = "User"
 
   window {
     start_date_time = "2024-07-13 03:00"
