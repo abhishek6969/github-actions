@@ -66,6 +66,23 @@ resource "azurerm_automation_account" "lirookAutomation" {
 
 resource "azurerm_log_analytics_linked_service" "example" {
   resource_group_name = azurerm_resource_group.azureInfra.name
-  workspace_id = azurerm_log_analytics_workspace.test-law-lirook.id
-  read_access_id = azurerm_automation_account.lirookAutomation.id
+  workspace_id        = azurerm_log_analytics_workspace.test-law-lirook.id
+  read_access_id      = azurerm_automation_account.lirookAutomation.id
 }
+
+resource "azurerm_maintenance_configuration" "example" {
+  name                = "example-MC"
+  resource_group_name = azurerm_resource_group.azureInfra.name
+  scope               = "InGuestPatch"
+  location            = azurerm_resource_group.azureInfra.location
+
+  window {
+    start_date_time = "2024-07-13 03:00"
+    time_zone       = "India Standard Time"
+    duration        = "03:59"
+    recur_every     = "monthly"
+  }
+
+}
+
+
