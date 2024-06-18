@@ -90,7 +90,7 @@ resource "azurerm_maintenance_configuration" "example" {
     start_date_time = "2024-07-13 03:00"
     time_zone       = "India Standard Time"
     duration        = "03:59"
-    recur_every     = "mMonth"
+    recur_every     = "Month"
   }
 
 }
