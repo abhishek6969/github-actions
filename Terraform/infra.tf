@@ -75,6 +75,9 @@ resource "azurerm_maintenance_configuration" "example" {
   resource_group_name = azurerm_resource_group.azureInfra.name
   scope               = "InGuestPatch"
   location            = azurerm_resource_group.azureInfra.location
+  install_patches {
+    reboot = "Always"
+  }
 
   window {
     start_date_time = "2024-07-13 03:00"
