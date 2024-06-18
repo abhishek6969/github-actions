@@ -70,10 +70,10 @@ resource "azurerm_log_analytics_linked_service" "example" {
   read_access_id      = azurerm_automation_account.lirookAutomation.id
 }
 
-resource "azurerm_maintenance_configuration" "test-MC" {
+resource "azurerm_maintenance_configuration" "test-MC2" {
   in_guest_user_patch_mode = "User"
   location                 = azurerm_resource_group.azureInfra.location
-  name                     = "montly_week2_3amist"
+  name                     = "itops-montly_week2_3amist"
   resource_group_name      = azurerm_resource_group.azureInfra.name
   scope                    = "InGuestPatch"
   install_patches {
