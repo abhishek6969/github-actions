@@ -107,10 +107,6 @@ resource "azurerm_maintenance_assignment_dynamic_scope" "lirookDS" {
   }
 }
 
-resource "azurerm_resource_group" "example" {
-  name     = "tfex-recovery_vault"
-  location = "West Europe"
-}
 
 resource "azurerm_recovery_services_vault" "lirrokVault" {
   name                = "lirrokVault"
