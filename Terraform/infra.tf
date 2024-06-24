@@ -107,3 +107,36 @@ resource "azurerm_maintenance_assignment_dynamic_scope" "lirookDS" {
   }
 }
 
+resource "azurerm_resource_group" "example" {
+  name     = "tfex-recovery_vault"
+  location = "West Europe"
+}
+
+resource "azurerm_recovery_services_vault" "lirrokVault" {
+  name                = "lirrokVault"
+  location            = azurerm_resource_group.azureInfra.location
+  resource_group_name = azurerm_resource_group.azureInfra.name
+  sku                 = "Standard"
+  storage_mode_type = "LocallyRedundant"
+
+  soft_delete_enabled = true
+}
+
+resource "azurerm_backup_policy_vm" "lirookRSVpolicy" {
+  name                = "lirookRSVpolicy"
+  resource_group_name = azurerm_resource_group.azureInfra.name
+  recovery_vault_name = azurerm_recovery_services_vault.lirrokVault.name
+
+  timezone = "IST"
+
+  backup {
+    frequency = "Daily"
+    time      = "23:00"
+  }
+
+  retention_daily {
+    count = 10
+  }
+
+}
+
