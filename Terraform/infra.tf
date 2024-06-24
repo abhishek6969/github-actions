@@ -136,3 +136,15 @@ resource "azurerm_backup_policy_vm" "lirookRSVpolicy" {
 
 }
 
+resource "azurerm_log_analytics_solution" "example" {
+  solution_name         = "ChangeTracking"
+  location              = azurerm_resource_group.azureInfra.location
+  resource_group_name   = azurerm_resource_group.azureInfra.name
+  workspace_name = azurerm_log_analytics_workspace.test-law-lirook.name
+  workspace_resource_id = azurerm_log_analytics_workspace.test-law-lirook.id
+  plan {
+    publisher = "Microsoft"
+    product   = "OMSGallery/ChangeTracking"
+  }
+}
+
