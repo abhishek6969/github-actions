@@ -100,7 +100,6 @@ resource "azurerm_maintenance_assignment_dynamic_scope" "lirookDS" {
   filter {
     tag_filter      = "Any"
     locations       = ["*"]
-    os_types        = ["All"]
     resource_groups = ["*"]
     resource_types  = ["Microsoft.Compute/virtualMachines"]
     tags {
