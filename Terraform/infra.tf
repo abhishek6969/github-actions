@@ -123,7 +123,7 @@ resource "azurerm_backup_policy_vm" "lirookRSVpolicy" {
   resource_group_name = azurerm_resource_group.azureInfra.name
   recovery_vault_name = azurerm_recovery_services_vault.lirrokVault.name
 
-  timezone = "UTC+5:30"
+  timezone = "India Standard Time"
 
   backup {
     frequency = "Daily"
