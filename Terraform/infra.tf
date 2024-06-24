@@ -93,3 +93,16 @@ resource "azurerm_maintenance_configuration" "test-MC2" {
   }
 }
 
+resource "azurerm_maintenance_assignment_dynamic_scope" "lirookDS" {
+  name                         = "LirookDS"
+  maintenance_configuration_id = azurerm_maintenance_configuration.test-MC2.id
+
+  filter {
+    tag_filter      = "Any"
+    tags {
+      tag    = "Maintainance_Window"
+      values = ["Week2_Saturday_3-11AM_IST"]
+    }
+  }
+}
+
