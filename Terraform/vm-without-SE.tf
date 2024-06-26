@@ -1,4 +1,12 @@
+data "azurerm_resource_group" "azureInfra" {
+  name = "azureInfra"
+}
 
+
+data "azurerm_monitor_data_collection_rule" "example-rule" {
+  name                = "example-rule"
+  resource_group_name = data.azurerm_resource_group.azureInfra.name
+}
 
 resource "azurerm_resource_group" "testRG" {
   name     = "testRG"
@@ -61,4 +69,26 @@ resource "azurerm_windows_virtual_machine" "test-vm" {
     sku       = "2022-Datacenter"
     version   = "latest"
   }
+}
+
+resource "azurerm_virtual_machine_extension" "Azure_Monitor_Windows_Agent" {
+  name                       = "Azure_Monitor_Windows_Agent"
+  virtual_machine_id         = azurerm_windows_virtual_machine.test-vm.id
+  publisher                  = "Microsoft.Azure.Monitor"
+  type                       = "AzureMonitorWindowsAgent"
+  type_handler_version       = "1.0"
+  auto_upgrade_minor_version = true
+  automatic_upgrade_enabled  = true
+
+}
+
+# associate to a Data Collection Rule
+resource "azurerm_monitor_data_collection_rule_association" "VM-DCR-association" {
+  name                    = "${azurerm_windows_virtual_machine.test-vm.name}-DCR-association"
+  target_resource_id      = azurerm_windows_virtual_machine.test-vm.id
+  data_collection_rule_id = data.azurerm_monitor_data_collection_rule.example-rule.id
+  description             = "Association for VM and DCR"
+  depends_on = [
+    azurerm_virtual_machine_extension.Azure_Monitor_Windows_Agent
+  ]
 }
