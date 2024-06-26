@@ -86,7 +86,7 @@ resource "azurerm_virtual_machine_extension" "Azure_Monitor_Windows_Agent" {
 resource "azurerm_monitor_data_collection_rule_association" "VM-DCR-association" {
   name                    = "${azurerm_windows_virtual_machine.test-vm.name}-DCR-association"
   target_resource_id      = azurerm_windows_virtual_machine.test-vm.id
-  data_collection_rule_id = data.azurerm_monitor_data_collection_rule.example-rule.id
+  data_collection_rule_id = data.azurerm_monitor_data_collection_rule.example-dcr.id
   description             = "Association for VM and DCR"
   depends_on = [
     azurerm_virtual_machine_extension.Azure_Monitor_Windows_Agent
