@@ -3,8 +3,8 @@ data "azurerm_resource_group" "azureInfra" {
 }
 
 
-data "azurerm_monitor_data_collection_rule" "example-rule" {
-  name                = "example-rule"
+data "azurerm_monitor_data_collection_rule" "example-dcr" {
+  name                = "example-dcr"
   resource_group_name = data.azurerm_resource_group.azureInfra.name
 }
 
