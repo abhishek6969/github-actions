@@ -149,7 +149,7 @@ resource "azurerm_virtual_machine_extension" "HybridWorkerForWindows" {
   automatic_upgrade_enabled  = true
 
   depends_on = [
-    azurerm_automation_hybrid_runbook_worker.windows-connection
+    azurerm_automation_hybrid_runbook_worker.example
   ]
 
 }
