@@ -145,8 +145,6 @@ resource "azurerm_virtual_machine_extension" "HybridWorkerForWindows" {
   publisher                  = "Microsoft.Azure.Automation"
   type                       = "HybridWorkerForWindows"
   type_handler_version       = "1.1"
-  auto_upgrade_minor_version = true
-  automatic_upgrade_enabled  = true
 
   depends_on = [
     azurerm_automation_hybrid_runbook_worker.example
