@@ -130,7 +130,7 @@ resource "random_uuid" "worker-uuid" {
 
 }
 
-resource "azurerm_automation_hybrid_runbook_worker" "windows-connection" {
+resource "azurerm_automation_hybrid_runbook_worker" "example" {
   resource_group_name     = data.azurerm_resource_group.azureInfra.name
   automation_account_name = data.azurerm_automation_account.lirookAutomation.name
   worker_group_name       = "lirook-windows-workers"
