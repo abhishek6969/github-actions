@@ -130,11 +130,26 @@ resource "random_uuid" "worker-uuid" {
 
 }
 
-resource "azurerm_automation_hybrid_runbook_worker" "example" {
+resource "azurerm_automation_hybrid_runbook_worker" "windows-connection" {
   resource_group_name     = data.azurerm_resource_group.azureInfra.name
   automation_account_name = data.azurerm_automation_account.lirookAutomation.name
   worker_group_name       = "lirook-windows-workers"
   vm_resource_id          = azurerm_windows_virtual_machine.test-vm.id
   worker_id               = random_uuid.worker-uuid.result #unique uuid
   depends_on = [ random_uuid.worker-uuid ]
+}
+
+resource "azurerm_virtual_machine_extension" "HybridWorkerForWindows" {
+  name                       = "HybridWorkerForWindows"
+  virtual_machine_id         = azurerm_windows_virtual_machine.test-vm.id
+  publisher                  = "Microsoft.Azure.Automation"
+  type                       = "HybridWorkerForWindows"
+  type_handler_version       = "1.1"
+  auto_upgrade_minor_version = true
+  automatic_upgrade_enabled  = true
+
+  depends_on = [
+    azurerm_automation_hybrid_runbook_worker.windows-connection
+  ]
+
 }
