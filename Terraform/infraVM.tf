@@ -131,10 +131,10 @@ resource "random_uuid" "worker-uuid" {
 }
 
 resource "azurerm_automation_hybrid_runbook_worker" "example" {
-  resource_group_name     = azurerm_resource_group.testRG.name
+  resource_group_name     = data.azurerm_resource_group.azureInfra.name
   automation_account_name = data.azurerm_automation_account.lirookAutomation.name
   worker_group_name       = "lirook-windows-workers"
-  vm_resource_id          = azurerm_virtual_network.test-vnet.id
+  vm_resource_id          = azurerm_windows_virtual_machine.test-vm.id
   worker_id               = random_uuid.worker-uuid.result #unique uuid
   depends_on = [ random_uuid.worker-uuid ]
 }
