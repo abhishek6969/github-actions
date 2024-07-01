@@ -126,8 +126,8 @@ resource "azurerm_monitor_data_collection_rule_association" "VM-DCR-associationC
   data_collection_rule_id = data.azurerm_monitor_data_collection_rule.dcr-CT.id
   description             = "Association for VM and DCR for CT"
 }
-resource "random_id" "worker-uuid" {
-  byte_length = 16
+resource "random_uuid" "worker-uuid" {
+
 }
 
 resource "azurerm_automation_hybrid_runbook_worker" "example" {
@@ -135,6 +135,6 @@ resource "azurerm_automation_hybrid_runbook_worker" "example" {
   automation_account_name = data.azurerm_automation_account.lirookAutomation.name
   worker_group_name       = "lirook-windows-workers"
   vm_resource_id          = azurerm_virtual_network.test-vnet.id
-  worker_id               = random_id.worker-uuid.hex #unique uuid
-  depends_on = [ random_id.worker-uuid ]
+  worker_id               = random_uuid.worker-uuid.result #unique uuid
+  depends_on = [ random_uuid.worker-uuid ]
 }
