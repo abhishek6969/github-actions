@@ -107,6 +107,18 @@ resource "azurerm_virtual_machine_extension" "HybridWorkerExtension" {
   type_handler_version = "1.1"
   auto_upgrade_minor_version = true
   automatic_upgrade_enabled = true
+  settings = <<SETTINGS
+  {
+    "AutomationAccountURL": "https://0f22f0ea-0548-47bd-b83a-a65342e1a252.jrds.we.azure-automation.net/automationAccounts/0f22f0ea-0548-47bd-b83a-a65342e1a252"
+  }
+  SETTINGS
+
+  protected_settings = <<PROTECTEDSETTINGS
+  {}
+  PROTECTEDSETTINGS
+
+
+
   depends_on = [
     azurerm_automation_hybrid_runbook_worker.example
   ]
