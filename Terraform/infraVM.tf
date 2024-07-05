@@ -66,6 +66,9 @@ resource "azurerm_windows_virtual_machine" "test-vm" {
   identity {
     type = "SystemAssigned"
   }
+  patch_assessment_mode = "AutomaticByPlatform"
+  patch_mode = "AutomaticByPlatform"
+  bypass_platform_safety_checks_on_user_schedule_enabled = true
   admin_password      = data.azurerm_key_vault_secret.VM-default-password.value
   network_interface_ids = [
     azurerm_network_interface.test-nic2.id
@@ -81,6 +84,9 @@ resource "azurerm_windows_virtual_machine" "test-vm" {
     offer     = "WindowsServer"
     sku       = "2022-Datacenter"
     version   = "latest"
+  }
+  tags = {
+    "Maintainance_Window" = "Week2_Saturday_3-11AM_IST"
   }
 }
 
