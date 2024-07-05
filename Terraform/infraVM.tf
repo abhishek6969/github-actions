@@ -99,6 +99,19 @@ resource "azurerm_virtual_machine_extension" "Azure_Monitor_Windows_Agent" {
 
 }
 
+resource "azurerm_virtual_machine_extension" "HybridWorkerExtension" {
+  name                 = "HybridWorkerExtension"
+  virtual_machine_id   = azurerm_windows_virtual_machine.test-vm.id
+  publisher            = "Microsoft.Azure.Automation.HybridWorker"
+  type                 = "HybridWorkerForWindows"
+  type_handler_version = "1.1"
+  auto_upgrade_minor_version = true
+  automatic_upgrade_enabled = true
+  depends_on = [
+    azurerm_automation_hybrid_runbook_worker.example
+  ]
+}
+
 # associate to a Data Collection Rule
 resource "azurerm_monitor_data_collection_rule_association" "VM-DCR-association" {
   name                    = "${azurerm_windows_virtual_machine.test-vm.name}-DCR-association"
