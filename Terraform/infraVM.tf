@@ -115,7 +115,7 @@ resource "azurerm_virtual_machine_extension" "HybridWorkerExtension" {
   automatic_upgrade_enabled = true
   settings = <<SETTINGS
   {
-    "AutomationAccountURL": "https://0f22f0ea-0548-47bd-b83a-a65342e1a252.jrds.we.azure-automation.net/automationAccounts/0f22f0ea-0548-47bd-b83a-a65342e1a252"
+    "AutomationAccountURL": ${data.azurerm_automation_account.lirookAutomation.hybrid_service_url}
   }
   SETTINGS
 
