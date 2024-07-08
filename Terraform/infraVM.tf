@@ -185,7 +185,7 @@ resource "azurerm_monitor_metric_alert" "cpu_alert" {
     metric_name      = "Percentage CPU"
     aggregation      = "Average"
     operator         = "GreaterThan"
-    threshold        = 10
+    threshold        = 1
   }
   action {
     action_group_id = data.azurerm_monitor_action_group.LirookAG.id
