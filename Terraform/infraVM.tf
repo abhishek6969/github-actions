@@ -6,6 +6,10 @@ data "azurerm_automation_account" "lirookAutomation" {
   resource_group_name = data.azurerm_resource_group.azureInfra.name
   
 }
+data "azurerm_monitor_action_group" "LirookAG" {
+  name = "LirookAG"
+  resource_group_name = data.azurerm_resource_group.azureInfra.name
+}
 
 
 data "azurerm_monitor_data_collection_rule" "example-dcr" {
@@ -168,4 +172,22 @@ resource "azurerm_automation_hybrid_runbook_worker" "example" {
   vm_resource_id          = azurerm_windows_virtual_machine.test-vm.id
   worker_id               = random_uuid.worker-uuid.result #unique uuid
   depends_on = [ random_uuid.worker-uuid ]
+}
+
+resource "azurerm_monitor_metric_alert" "cpu_alert" {
+  name                = "${azurerm_windows_virtual_machine.test-vm.name}-CPU-Lirook"
+  resource_group_name = azurerm_resource_group.testRG.name
+  scopes              = [azurerm_windows_virtual_machine.test-vm.id]
+  description         = "Alert for high CPU usage for ${azurerm_windows_virtual_machine.test-vm.name}"
+  
+  criteria {
+    metric_namespace = "Microsoft.Compute/virtualMachines"
+    metric_name      = "Percentage CPU"
+    aggregation      = "Average"
+    operator         = "GreaterThan"
+    threshold        = 10
+  }
+  action {
+    action_group_id = data.azurerm_monitor_action_group.LirookAG.id
+  }
 }
