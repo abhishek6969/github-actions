@@ -1,0 +1,2 @@
+VM_Name,VM_RG_name,VM_RG_Location,workspace_name,automation_account_name,metric_dcr_name,Infra_RG_Name,Infra_RG_location,AG_name,vault_name,backup_policy_name,CT_DCR_name
+test-VM,testRG,West Europe,test-law-lirook,lirookAutomation,example-dcr,azureInfra,West Europe,LirookAG,lirrokVault,lirookRSVpolicy,dcr-CT
