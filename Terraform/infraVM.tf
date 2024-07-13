@@ -55,20 +55,20 @@ resource "azurerm_subnet" "test-sb" {
 }
 
 resource "azurerm_network_interface" "test-nic2" {
-  name                = "${azurerm_windows_virtual_machine.test-vm.name}-NIC"
+  name                = "${local.VM_Name}-NIC"
   location            = azurerm_resource_group.testRG.location
   resource_group_name = azurerm_resource_group.testRG.name
 
   ip_configuration {
     public_ip_address_id          = azurerm_public_ip.test-ip.id
-    name                          = "${azurerm_windows_virtual_machine.test-vm.name}-internal"
+    name                          = "${local.VM_Name}-internal"
     private_ip_address_allocation = "Dynamic"
     subnet_id                     = azurerm_subnet.test-sb.id
   }
 }
 
 resource "azurerm_public_ip" "test-ip" {
-  name                = "${azurerm_windows_virtual_machine.test-vm.name}-ip"
+  name                = "${local.VM_Name}-ip"
   resource_group_name = azurerm_resource_group.testRG.name
   location            = azurerm_resource_group.testRG.location
   allocation_method   = "Static"
