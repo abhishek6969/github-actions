@@ -14,7 +14,7 @@ locals {
   vault_name = local.csv_data[0].vault_name
   backup_policy_name = local.csv_data[0].backup_policy_name
   CT_DCR_name = local.csv_data[0].CT_DCR_name
-  VM_RG_Name = local.csv_data[0].VM_RG_Name
-  VM_RG_Location = local.csv_data[0].CT_DCR_Location
+  VM_RG_Name = local.csv_data[0].VM_RG_name
+  VM_RG_Location = local.csv_data[0].VM_RG_Location
   VM_Name = local.csv_data[0].VM_Name
 }
