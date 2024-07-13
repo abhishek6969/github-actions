@@ -78,7 +78,7 @@ resource "azurerm_windows_virtual_machine" "test-vm" {
   name                = local.VM_Name
   resource_group_name = azurerm_resource_group.testRG.name
   location            = azurerm_resource_group.testRG.location
-  size                = "Standard_B1s"
+  size                = local.VM_size
   admin_username      = "adminuser"
   identity {
     type = "SystemAssigned"

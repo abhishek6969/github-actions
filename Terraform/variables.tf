@@ -17,4 +17,6 @@ locals {
   VM_RG_Name = local.csv_data[0].VM_RG_name
   VM_RG_Location = local.csv_data[0].VM_RG_Location
   VM_Name = local.csv_data[0].VM_Name
+  VM_size = local.csv_data[0].VM_size
+
 }
